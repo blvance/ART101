@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 30px;
+    background: #26382d url('forest.png') center / cover fixed;
+    color: #fff3d8;
+    font-family: Georgia, serif;
+}
+
+.forest-scene {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 25px;
+    background: rgba(20, 35, 26, 0.8);
+    border-radius: 12px;
+}
+
+h1 {
+    color: #ffcf83;
+    text-align: center;
+}
+
+.introduction {
+    max-width: 650px;
+    margin: 0 auto 20px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.atmosphere-zone {
+    padding: 15px;
+    background: rgba(190, 205, 185, 0.25);
+    border-radius: 10px;
+    text-align: center;
+}
+
+#moon,
+#fireflies,
+#canopy {
+    margin: 0 15px;
+    color: #ffe29c;
+    font-size: 2rem;
+}
+
+.mist {
+    display: inline-block;
+    width: 70px;
+    height: 12px;
+    margin: 0 8px;
+    border-radius: 50%;
+    background: rgba(235, 241, 228, 0.65);
+}
+
+.main-zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(40, 48, 34, 0.75);
+    border-radius: 10px;
+    text-align: center;
+}
+
+#rider img {
+    width: 300px;
+}
+
+#trail-marker span,
+#forest-tree span {
+    font-size: 3rem;
+}
+
+#rider figcaption,
+#trail-marker p,
+#forest-tree p {
+    margin: 5px 0;
+}
+
+.social {
+    text-align: center;
+}
+
+.instagram-link {
+    color: #ffcf83;
+}
+
+@media (max-width: 650px) {
+    body {
+        padding: 15px;
+    }
+
+    .main-zone {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    #rider img {
+        max-width: 100%;
+    }
+}
