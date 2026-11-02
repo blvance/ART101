@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Environment 04: Tuning the Ridge</title>
+    <link rel="stylesheet" href="env04.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="env04.js" defer></script>
+</head>
+<body class="night-mode">
+    <main class="forest-scene">
+        <h1>Environment 04: Tuning the Ridge</h1>
+        <p class="introduction">
+            The Listening Ridge changes with the hour. Choose day or night and watch the forest shift its light,
+            sounds, and mood around the Lantern.
+        </p>
+
+        <div class="control-panel">
+            <button id="tune-time">Tune the time</button>
+            <button id="show-title">Show title</button>
+            <button id="show-elements">Show elements</button>
+            <button id="show-entity">Show main entity</button>
+            <button id="count-clicks">Count trail checks</button>
+        </div>
+
+        <section class="ridge" aria-label="The Listening Ridge at night">
+            <div class="ridge-sky" aria-hidden="true"><span class="sun-or-moon">☾</span><span class="stars">✦　·　✧　·　✦</span></div>
+            <div class="ridge-forest" aria-hidden="true">🌲　🌲　🌲　🌲　🌲</div>
+            <p class="ridge-caption">Mist curls around the moonlit trail. The Lantern is watchful.</p>
+        </section>
+
+        <div id="environment-output" aria-live="polite">
+            <h2>Night on the ridge</h2>
+            <p>The Lantern glows softly while distant owls call through the trees.</p>
+        </div>
+    </main>
+</body>
+</html>
