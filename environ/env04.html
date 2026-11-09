@@ -3,37 +3,55 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Environment 04: Tuning the Ridge</title>
+    <title>Environment 04: The Ridge Answers</title>
     <link rel="stylesheet" href="env04.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="env04.js" defer></script>
 </head>
-<body class="night-mode">
-    <main class="forest-scene">
-        <h1>Environment 04: Tuning the Ridge</h1>
-        <p class="introduction">
-            The Listening Ridge changes with the hour. Choose day or night and watch the forest shift its light,
-            sounds, and mood around the Lantern.
-        </p>
+<body>
+    <main class="ridge-scene" id="ridge-scene">
+        <header class="scene-header">
+            <p class="eyebrow">A field note from the forest</p>
+            <h1>The Ridge Answers</h1>
+            <p class="introduction">
+                The Lantern has gone quiet. Wake it, listen at the trail marker,
+                and see what stirs between the trees.
+            </p>
+        </header>
 
-        <div class="control-panel">
-            <button id="tune-time">Tune the time</button>
-            <button id="show-title">Show title</button>
-            <button id="show-elements">Show elements</button>
-            <button id="show-entity">Show main entity</button>
-            <button id="count-clicks">Count trail checks</button>
-        </div>
+        <section class="forest-stage" aria-label="A forest ridge at night">
+            <div class="night-sky">
+                <button class="moon" id="moon" type="button" aria-label="Double-click the moon to change the night">◕</button>
+                <div class="stars" aria-hidden="true">·　✦　　　　·　　✧　　　　　·　✦</div>
+            </div>
+            <div class="ridge-line" aria-hidden="true"></div>
+            <div class="pine pine-left" aria-hidden="true">🌲</div>
+            <div class="pine pine-right" aria-hidden="true">🌲</div>
+            <div class="fireflies" id="fireflies" aria-hidden="true">✦　·　✧　·　✦　·　✧</div>
 
-        <section class="ridge" aria-label="The Listening Ridge at night">
-            <div class="ridge-sky" aria-hidden="true"><span class="sun-or-moon">☾</span><span class="stars">✦　·　✧　·　✦</span></div>
-            <div class="ridge-forest" aria-hidden="true">🌲　🌲　🌲　🌲　🌲</div>
-            <p class="ridge-caption">Mist curls around the moonlit trail. The Lantern is watchful.</p>
+            <button class="lantern" id="lantern" type="button" aria-label="Wake the Lantern">
+                <span class="lantern-glow" aria-hidden="true"></span>
+                <span class="lantern-icon" aria-hidden="true">♨</span>
+                <span class="lantern-label">The Lantern</span>
+            </button>
+
+            <button class="trail-marker" id="trail-marker" type="button">
+                <span aria-hidden="true">▰</span>
+                <span>Old trail marker</span>
+                <span class="whisper" id="whisper" aria-hidden="true">The path remembers your footsteps.</span>
+            </button>
+
+            <p class="path-caption">LISTENING RIDGE · AFTER MIDNIGHT</p>
         </section>
 
-        <div id="environment-output" aria-live="polite">
-            <h2>Night on the ridge</h2>
-            <p>The Lantern glows softly while distant owls call through the trees.</p>
-        </div>
+        <section class="interaction-panel" aria-label="Environment controls">
+            <p id="status" role="status" aria-live="polite">A dim light waits in the trees.</p>
+            <div class="controls">
+                <button id="wake-button" type="button">Wake the Lantern</button>
+                <button id="firefly-button" type="button" aria-pressed="false">Call the fireflies <kbd>F</kbd></button>
+            </div>
+            <p class="hint">Hover over the marker to hear it. Double-click the moon to shift the night.</p>
+        </section>
     </main>
 </body>
 </html>

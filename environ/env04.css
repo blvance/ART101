@@ -1,107 +1,358 @@
-:root {
-    color-scheme: dark;
-    --page-sky: #101c35;
-    --panel: rgba(15, 25, 26, 0.82);
-    --ridge: rgba(28, 43, 47, 0.86);
-    --accent: #ffd98a;
-    --text: #f5ecd7;
+* {
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0;
     min-height: 100vh;
-    padding: 30px;
-    background: var(--page-sky) url('forest.png') center / cover fixed;
-    color: var(--text);
-    font-family: Georgia, serif;
-    transition: background-color 0.6s ease, color 0.6s ease;
+    margin: 0;
+    padding: 32px 18px;
+    color: #f4eddd;
+    background: #10191a url("forest.png") center / cover fixed;
+    font-family: Georgia, "Times New Roman", serif;
 }
 
-body.day-mode {
-    color-scheme: light;
-    --page-sky: #a8d7df;
-    --panel: rgba(255, 248, 220, 0.88);
-    --ridge: rgba(230, 239, 195, 0.9);
-    --accent: #9a4f22;
-    --text: #29382d;
+button {
+    color: inherit;
+    font: inherit;
 }
 
-.forest-scene {
-    max-width: 900px;
+.ridge-scene {
+    width: min(940px, 100%);
     margin: 0 auto;
-    padding: 30px;
-    background: var(--panel);
-    border: 1px solid color-mix(in srgb, var(--accent), transparent 45%);
-    border-radius: 16px;
-    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
-    transition: background-color 0.6s ease;
+    overflow: hidden;
+    border: 1px solid rgba(226, 203, 151, 0.42);
+    border-radius: 18px;
+    background: rgba(11, 20, 21, 0.88);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
 }
 
-h1 { margin-top: 0; color: var(--accent); text-align: center; }
-
-.introduction {
-    max-width: 650px;
-    margin: 0 auto 20px;
-    line-height: 1.6;
+.scene-header {
+    padding: 34px 28px 24px;
     text-align: center;
 }
 
-.control-panel {
+.eyebrow,
+.path-caption {
+    color: #b6bd9a;
+    font: 0.75rem/1.4 Arial, sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 8px 0 12px;
+    color: #f3d996;
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    font-weight: normal;
+}
+
+.introduction {
+    max-width: 580px;
+    margin: 0 auto;
+    color: #d9d4c3;
+    line-height: 1.65;
+}
+
+.forest-stage {
+    position: relative;
+    min-height: 390px;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        linear-gradient(180deg, rgba(13, 23, 31, 0.1), rgba(11, 21, 20, 0.28)),
+        url("forest.png") center 48% / cover;
+    border-block: 1px solid rgba(226, 203, 151, 0.25);
+}
+
+.forest-stage::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11, 17, 26, 0.1), rgba(10, 22, 18, 0.84));
+    content: "";
+}
+
+.night-sky {
+    position: absolute;
+    inset: 0 0 35%;
+    background: linear-gradient(180deg, rgba(14, 25, 38, 0.52), transparent);
+    transition: background 500ms ease;
+}
+
+.moon {
+    position: absolute;
+    top: 28px;
+    right: 12%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #f4e3b2;
+    cursor: pointer;
+    font-size: 3.4rem;
+    line-height: 1;
+    text-shadow: 0 0 24px rgba(255, 229, 174, 0.6);
+    transition: color 400ms, transform 400ms, text-shadow 400ms;
+}
+
+.moon:hover {
+    transform: scale(1.12);
+}
+
+.stars {
+    position: absolute;
+    top: 45px;
+    left: 12%;
+    color: rgba(255, 245, 214, 0.72);
+    letter-spacing: 0.2em;
+}
+
+.ridge-line {
+    position: absolute;
+    right: -8%;
+    bottom: 24%;
+    left: -8%;
+    height: 45%;
+    border-radius: 50% 50% 0 0 / 15% 15% 0 0;
+    background: linear-gradient(145deg, rgba(30, 52, 43, 0.72), rgba(11, 25, 23, 0.92));
+    transform: rotate(-3deg);
+}
+
+.pine {
+    position: absolute;
+    z-index: 1;
+    bottom: 17%;
+    color: rgba(10, 24, 21, 0.92);
+    font-size: 12rem;
+    line-height: 1;
+    text-shadow: 0 12px 0 rgba(10, 24, 21, 0.8);
+}
+
+.pine-left {
+    left: 2%;
+}
+
+.pine-right {
+    right: 3%;
+    transform: scale(1.2);
+}
+
+.fireflies {
+    position: absolute;
+    z-index: 2;
+    top: 43%;
+    left: 18%;
+    color: #d8d694;
+    opacity: 0.16;
+    font-size: 1.35rem;
+    letter-spacing: 0.5em;
+    text-shadow: 0 0 12px #f4ec9b;
+    transition: opacity 500ms, filter 500ms;
+}
+
+.lantern {
+    position: absolute;
+    z-index: 3;
+    top: 43%;
+    left: 50%;
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+    padding: 10px 18px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+}
+
+.lantern-glow {
+    position: absolute;
+    z-index: -1;
+    top: -34px;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f5d276;
+    opacity: 0;
+    filter: blur(26px);
+    transform: translateX(-50%) scale(0.6);
+    transition: opacity 500ms, transform 500ms;
+}
+
+.lantern-icon {
+    color: #b3a477;
+    font-size: 3.5rem;
+    line-height: 1;
+    transition: color 400ms, text-shadow 400ms, transform 400ms;
+}
+
+.lantern-label {
+    color: #e4dcc7;
+    font-size: 0.9rem;
+    text-shadow: 0 2px 8px #07100e;
+}
+
+.lantern:hover .lantern-icon {
+    transform: translateY(-3px);
+}
+
+.trail-marker {
+    position: absolute;
+    z-index: 4;
+    right: 24%;
+    bottom: 18%;
+    display: grid;
+    justify-items: center;
+    gap: 4px;
+    padding: 10px;
+    border: 0;
+    background: transparent;
+    color: #c3b89e;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.trail-marker > span:first-child {
+    color: #8e8978;
+    font-size: 2.4rem;
+}
+
+.whisper {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    width: max-content;
+    max-width: min(260px, 70vw);
+    padding: 10px 14px;
+    border: 1px solid rgba(243, 217, 150, 0.55);
+    border-radius: 14px;
+    background: rgba(12, 21, 20, 0.94);
+    color: #f3d996;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 6px);
+    transition: opacity 250ms, transform 250ms;
+}
+
+.trail-marker:hover .whisper,
+.trail-marker:focus-visible .whisper {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.path-caption {
+    position: absolute;
+    z-index: 2;
+    bottom: 14px;
+    left: 50%;
+    margin: 0;
+    color: rgba(235, 227, 203, 0.68);
+    white-space: nowrap;
+    transform: translateX(-50%);
+}
+
+.interaction-panel {
+    padding: 22px 24px 26px;
+    text-align: center;
+}
+
+#status {
+    min-height: 1.5em;
+    margin: 0 0 14px;
+    color: #f3d996;
+    font-size: 1.1rem;
+}
+
+.controls {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
-    margin: 20px 0;
 }
 
-button {
-    padding: 10px 18px;
-    border: 2px solid var(--accent);
+.controls button {
+    padding: 10px 17px;
+    border: 1px solid #d6bd7f;
     border-radius: 999px;
-    background: var(--panel);
-    color: var(--text);
-    font: inherit;
+    background: rgba(210, 183, 118, 0.08);
+    color: #f4eddd;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: background 200ms, transform 200ms;
 }
 
-button:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--accent), transparent 82%); }
-button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-
-.ridge {
-    overflow: hidden;
-    margin: 20px 0;
-    padding: 22px;
-    border: 1px solid color-mix(in srgb, var(--accent), transparent 55%);
-    border-radius: 14px;
-    background: var(--ridge);
-    text-align: center;
-    transition: background-color 0.6s ease;
+.controls button:hover {
+    background: rgba(210, 183, 118, 0.2);
+    transform: translateY(-2px);
 }
 
-.ridge-sky { display: flex; justify-content: space-around; align-items: center; min-height: 76px; color: var(--accent); }
-.sun-or-moon { font-size: 3rem; }
-.stars { font-size: 1.6rem; }
-.ridge-forest { color: #25503e; font-size: clamp(2rem, 8vw, 4rem); letter-spacing: -0.3em; }
-body:not(.day-mode) .ridge-forest { color: #102b2b; }
-.ridge-caption { margin-bottom: 0; line-height: 1.6; }
-body.day-mode .stars { opacity: 0.25; }
-
-#environment-output {
-    min-height: 96px;
-    margin-top: 18px;
-    padding: 22px;
-    background: var(--ridge);
-    border: 1px solid color-mix(in srgb, var(--accent), transparent 55%);
-    border-radius: 12px;
-    line-height: 1.7;
+kbd {
+    margin-left: 5px;
+    color: #f3d996;
 }
 
-#environment-output h2 { margin-top: 0; color: var(--accent); }
-#environment-output ul { margin: 12px 0 0; padding-left: 20px; }
+.hint {
+    margin: 16px 0 0;
+    color: #b8b8a8;
+    font-size: 0.9rem;
+}
+
+.ridge-scene.awake .lantern-glow {
+    opacity: 0.95;
+    transform: translateX(-50%) scale(2.8);
+}
+
+.ridge-scene.awake .lantern-icon {
+    color: #ffe28e;
+    text-shadow: 0 0 24px rgba(255, 213, 112, 0.95);
+}
+
+.ridge-scene.eclipse .night-sky {
+    background: rgba(5, 9, 15, 0.7);
+}
+
+.ridge-scene.eclipse .moon {
+    color: #9c9b9d;
+    text-shadow: 0 0 12px rgba(183, 187, 196, 0.4);
+    transform: rotate(180deg);
+}
+
+.ridge-scene.eclipse .lantern-glow {
+    opacity: 1;
+    transform: translateX(-50%) scale(3.2);
+}
+
+.ridge-scene.fireflies-called .fireflies {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px #f4ec9b);
+}
+
+button:focus-visible {
+    outline: 2px solid #fff0bd;
+    outline-offset: 4px;
+}
 
 @media (max-width: 600px) {
-    body { padding: 15px; }
-    .forest-scene { padding: 20px 16px; }
-    .control-panel { flex-direction: column; }
+    body {
+        padding: 14px 10px;
+    }
+
+    .scene-header {
+        padding: 26px 18px 20px;
+    }
+
+    .forest-stage {
+        min-height: 340px;
+    }
+
+    .pine {
+        font-size: 8rem;
+    }
+
+    .trail-marker {
+        right: 12%;
+    }
+
+    .path-caption {
+        font-size: 0.62rem;
+    }
 }
